@@ -1,0 +1,27 @@
+clientConnection:
+  kubeconfig: /etc/loxilight/loxi-agent.kubeconfig
+hostProcPathPrefix: "/"
+loxiEndpointIface: "hsbond1"
+  type: "bond",                  # static | bond
+  interfaces: ["hs0", "hs1"],
+  mode: "0"                      # mode=0 (Balance Round Robin), mode=1 (Active backup), mode=2 (Balance XOR), mode=3 (Broadcast), mode=4 (802.3ad), mode=5 (Balance TLB), mode=6 (Balance ALB)
+ipam:
+  mode: "static"                   # static | dynamic
+  localIP: "2.2.2.1/24"
+  gateway: "2.2.2.254"
+  routes: [
+    {"dst": "0.0.0.0/0"}
+  ]
+dns:
+  nameservers: ["168.126.63.1"]
+
+# tunnelIP: "100.1.1.1/24" # K8S Store 에서 사용가능한 range 를 할당 받아야 함
+# localIP: "2.2.2.1/24"    # IPAM 이 STATIC, DYNAMIC 이냐에 따라 로직이 다름
+
+flowCollectorProto: "tcp"-
+flowCollectorAddr: "118.67.131.101:30473"
+#loxilightIP: "tcp://192.168.20.71:8861"
+loxilightIP: "tcp://192.168.100.2:8861"
+withSmartNIC: true
+
+# /etc/loxilight/vif_map.cfg 
